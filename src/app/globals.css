@@ -18,19 +18,33 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  /* background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
-    background-color: gray;
+  display: grid;
+  grid-template-columns: 200px auto;
+  gap: 20px;
+  background-color: gray;
 }
-
+body > div:nth-child(2) {
+  margin: 10vh auto;
+}
+h1 {
+  font-size: 14pt;
+  color: rgb(48, 48, 48);
+}
+nav {
+  background: white;
+  height: 100vh;
+  padding: 20px;
+}
+ul {
+  display: grid;
+  gap: 10px;
+}
+a {
+  color: #2cc12c;
+}
 form.class-form {
   background: white;
   width: fit-content;
-  margin: 10vh auto;
   padding: 20px;
   display: grid;
   gap: 20px;
