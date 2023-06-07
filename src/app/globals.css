@@ -18,10 +18,26 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
+    background-color: gray;
+}
+
+form.class-form {
+  background: white;
+  width: fit-content;
+  margin: 10vh auto;
+  padding: 20px;
+  display: grid;
+  gap: 20px;
+  color: black;
+  justify-content: center;
+}
+button {
+  background: #4fdf4f;
+  padding: 10px;
 }
