@@ -6,7 +6,8 @@ require('dotenv').config();
 const app = express()
 
 const key = process.env.KEYSERVERSTRIPE;
-const stripe = new Stripe(key)
+// const stripe = new Stripe(key)
+const stripe = new Stripe("sk_test_51NGPLmHxcJiCMySEq2x2PRAXCmqTBPZrfXnDh8ZmjByZY89toYjAFux2oFOwHqH4ufZFg9Es632WaMIRDyOcPqmg00nqUh5EKG")
 
 app.use(cors({origin:"http://localhost:3000"}))
 

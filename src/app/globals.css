@@ -55,3 +55,11 @@ button {
   background: #4fdf4f;
   padding: 10px;
 }
+form.class-form-subscribe {
+  background: white;
+  padding: 20px;
+  display: grid;
+  gap: 20px;
+  min-width: 26vw;
+  color: rgb(48, 48, 48);
+}
