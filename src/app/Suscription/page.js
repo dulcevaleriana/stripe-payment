@@ -7,26 +7,11 @@ import {
     CardElement,
     useStripe,
   } from "@stripe/react-stripe-js"
+import axios from "axios"
 
 const stripePromise = loadStripe("pk_test_51NGPLmHxcJiCMySE7kKST0V29XeL4pz1qtXw6sKmmp31c11mnvwSpeP8tK4OtGy0NmkV7Erp3yTkHBT6UbMKmnLm00Ap6A1kRe");
 
 export default function Suscription() {
-//   const handleClick = async (e) => {
-//     e.preventDefault();
-//     const stripe = await stripePromise;
-//     const { error } = await stripe.redirectToCheckout({
-//       lineItems: [{ price: 'price_1NGW3EHxcJiCMySExhcXFbDM', quantity: 1 }],
-//       mode: 'subscription',
-//       successUrl: 'https://github.com/dulcevaleriana?tab=repositories',
-//       cancelUrl: 'https://github.com/dulcevaleriana/stripe-payment',
-//     });
-
-//     if (error) {
-//       console.log(error)
-//     } else {
-//         console.log("successfull? I guess...")
-//     }
-//   };
 
     const PaymentForm = () => {
         const [name, setName] = useState("")
@@ -37,6 +22,22 @@ export default function Suscription() {
         const createSubscription =  async (e) => {
             e.preventDefault();
             try {
+                const paymentMethod = await stripe.createPaymentMethod({
+                    type:'card',
+                    // card: elements.getElement('card')
+                    card: elements.getElement(CardElement)
+                })
+                const response = await axios.post('http://localhost:3001/api/subscribe',{
+                    name,
+                    email,
+                    paymentMethod: paymentMethod.paymentMethod.id
+                })
+                if(response.status != 200) return console.log({message:"payment unsucesfull !",response});
+                // const data = await response.json();
+                console.log({response})
+                const confirm = await stripe.confirmCardPayment(response.data.clientSecret);
+                if(confirm.err) return console.log({message:"payment unsucesfull !", err})
+                alert("payment sucesfull ! subscription active")
 
             } catch(err) {
                 console.log(err)
